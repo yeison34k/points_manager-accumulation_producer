@@ -37,6 +37,7 @@ func (h *LambdaHandler) HandleRequest(ctx context.Context, request events.APIGat
 	var body domain.Point
 	err := json.Unmarshal(b, &body)
 	if err != nil {
+		log.Fatal("Error Unmarshal:", err)
 		return events.APIGatewayProxyResponse{
 			StatusCode: 500,
 		}, err
@@ -44,6 +45,8 @@ func (h *LambdaHandler) HandleRequest(ctx context.Context, request events.APIGat
 
 	err = h.pointHandler.HandlePointCreation(&body)
 	if err != nil {
+		log.Fatal("Error HandlePointCreation:", err)
+
 		return events.APIGatewayProxyResponse{
 			StatusCode: 500,
 			Body:       "Internal Server Error",
