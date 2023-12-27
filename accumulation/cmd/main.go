@@ -56,7 +56,7 @@ func (h *LambdaHandler) HandleRequest(ctx context.Context, request events.APIGat
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
 		Body: fmt.Sprintf("%v", domain.Response{
-			Code:    "200",
+			Code:    200,
 			Message: "point: success create",
 		}),
 	}, nil
