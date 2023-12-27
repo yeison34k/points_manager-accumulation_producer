@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  accumulation
+  Sample SAM Template for accumulation
+Globals:
+  Function:
+    Timeout: 5
+    MemorySize: 128
+    Runtime: go1.x
+    Architectures:
+      - x86_64    
+
+Resources:
+  accumulationProducer:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: accumulation/cmd
+      Handler: producer
+      Events:
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /accumulation-producer
+            Method: POST       
+      Environment:
+        Variables:
+          QUEUE_URL: https://sqs.us-west-1.amazonaws.com/763564070137/points_manager
+
