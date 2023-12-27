@@ -6,7 +6,6 @@ import (
 	"accumulation_producer/internal/infrastructure/sqs"
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"os"
 
@@ -53,12 +52,15 @@ func (h *LambdaHandler) HandleRequest(ctx context.Context, request events.APIGat
 		}, nil
 	}
 
+	response := domain.Response{
+		Code:    200,
+		Message: "point: success create",
+	}
+	r, _ := json.Marshal(response)
+
 	return events.APIGatewayProxyResponse{
 		StatusCode: 200,
-		Body: fmt.Sprintf("%v", domain.Response{
-			Code:    200,
-			Message: "point: success create",
-		}),
+		Body:       string(r),
 	}, nil
 }
 

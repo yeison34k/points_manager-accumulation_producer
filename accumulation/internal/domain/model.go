@@ -8,6 +8,6 @@ type Point struct {
 }
 
 type Response struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
+	Code    int    `json:"code,omitempty"`
+	Message string `json:"message,omitempty"`
 }
