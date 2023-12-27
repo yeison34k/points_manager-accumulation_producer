@@ -26,4 +26,9 @@ Resources:
       Environment:
         Variables:
           QUEUE_URL: https://sqs.us-west-1.amazonaws.com/763564070137/points_manager
-
+      Policies:
+        - Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action: sqs:SendMessage
+              Resource: arn:aws:sqs:us-west-1:763564070137:points_manager
