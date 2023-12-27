@@ -18,7 +18,7 @@ type SQSHandler struct {
 
 func NewSQSHandler(queueURL string) *SQSHandler {
 	sess, err := session.NewSession(&aws.Config{
-		Region: aws.String("us-east-1"), // Cambia esto a tu región de AWS deseada
+		Region: aws.String("us-west-1"), // Cambia esto a tu región de AWS deseada
 	})
 	if err != nil {
 		log.Fatal("Error creando la sesión:", err)
